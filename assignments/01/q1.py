@@ -45,7 +45,7 @@ print(sess.run(out))
 ###############################################################################
 
 x = tf.constant([[0, -2, -1], [0, 1, 2]])
-y = tf.zeros(tf.shape(x), dtype=tf.int32)
+y = tf.zeros_like(x)
 out = tf.equal(x, y)
 print(sess.run(out))
 
@@ -114,7 +114,7 @@ x = tf.random_normal(shape=[300, ])
 y = tf.random_normal(shape=[300, ])
 
 res = x - y
-mse = tf.reduce_mean(0.5 * tf.square(res))
+mse = tf.reduce_mean(tf.square(res))
 hub = tf.reduce_mean(tf.abs(res))
 
 out = tf.cond(tf.less(tf.reduce_mean(res), 0), lambda: mse, lambda: hub)
